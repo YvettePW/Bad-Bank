@@ -1,20 +1,16 @@
 function Spa(){
-    const Route         = ReactRouterDOM.Route;
-    const Link          = ReactRouterDOM.Link;
-    const HashRouter    = ReactRouterDOM.HashRouter;
-
     return (
         <HashRouter>
-        <div>
-            <h1>Routing - Hello World</h1>
-            <Link to="/">Home</Link> --
-            <Link to="/about/">About</Link> --
-            <Link to="/products">Products</Link>
-            <hr/>
-            <Route path="/" exact   component={Home}    />
-            <Route path="/about/"   component={About}   />
-            <Route path="/products/" component={Products}   />
-        </div>
+        <NavBar/>
+        <UserContext.Provider value={{users:[{name:'abel', email:'abel@mit.edu',password:'secret',balance:100}]}}>
+            <Route path="/" exact component={Home} />
+            <Route path="/CreateAccount/" component={CreateAccount} />    
+            <Route path="/alldata/" component={AllData} />   
+            <Route path="/balance/" component={Balance} />     
+            <Route path="/deposit/" component={Deposit} />     
+            <Route path="/withdraw/" component={Withdraw} />     
+            <Route path="/login/" component={Login} />
+        </UserContext.Provider>          
         </HashRouter>
     );
 }

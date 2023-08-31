@@ -1,7 +1,7 @@
-function Home(){
+function Balance(){
     const ctx = React.useContext(UserContext);
     return (
-        <h1>Home<br/>
+        <h1>Balance<br/>
             {JSON.stringify(ctx)}
         </h1>
     );

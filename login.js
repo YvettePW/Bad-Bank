@@ -1,7 +1,7 @@
-function Home(){
+function Login(){
     const ctx = React.useContext(UserContext);
     return (
-        <h1>Home<br/>
+        <h1>Login<br/>
             {JSON.stringify(ctx)}
         </h1>
     );

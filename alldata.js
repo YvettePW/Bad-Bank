@@ -1,8 +1,12 @@
 function AllData(){
     const ctx = React.useContext(UserContext);
     return (
-        <h1>All Data<br/>
-            {JSON.stringify(ctx)}
-        </h1>
+                <Card
+                bgcolor="primary"
+                txtcolor="white"
+                header="ALL DATA"
+                title="Name"
+                body={JSON.stringify(ctx.users.map)}
+                />
     );
 }

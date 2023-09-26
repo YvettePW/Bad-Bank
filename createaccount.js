@@ -6,7 +6,18 @@ function CreateAccount(){
     const [password, setPassword]   = React.useState(''); 
     const ctx=React.useContext(UserContext);
  
-    const isSubmitDisabled = !name;
+    const isSubmitDisabled = !name && !email && !password;
+
+    var regix = new RegExp("^(?=.{8,})");
+
+    function regix(field, label) { 
+        if (!field) { 
+            setStatus("Error: Enter a password of 8 digits or more ");
+            setTimeout(() => setStatus(''),3000);
+            return false; 
+        }   
+            return true; 
+    }; 
 
     function validate(field, label){
         if (!field) {
@@ -15,23 +26,24 @@ function CreateAccount(){
             return false;
         }
         return true;
-    }
+    };
     
     function handleCreate(){
         console.log(name,email,password);
         if (!validate(name,     'name'))        return;
         if (!validate(email,    'email'))       return;
         if (!validate(password, 'password'))    return; 
+        if (!regix.test(password, 'password'))  return;
         ctx.users.push({name,email,password,balance:100});  
         setShow(false);     
-    }
+    };
 
     function clearForm(){
         setName('');
         setEmail('');
         setPassword('');
         setShow(true);
-    }
+    };
 
     return (
         <Card
@@ -63,7 +75,7 @@ function CreateAccount(){
                 type="password" 
                 className="form-control" 
                 id="password" 
-                placeholder="Enter password" 
+                placeholder="Enter a password" 
                 value={password} 
                 onChange={e => setPassword(e.currentTarget.value)}/><br/>
                 
@@ -84,5 +96,5 @@ function CreateAccount(){
                 </>
             )}
         />
-    )
+    );
 }

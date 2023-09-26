@@ -4,16 +4,15 @@ function Withdraw(){
     const [balance, setBalance]                 = React.useState(100); // initialize balance to $100
     const [withdraw, setWithdraw]               = React.useState('');
     const ctx = React.useContext(UserContext);
-
     const isSubmitDisabled = !withdraw;
 
     function validate(field, label){
-        if (parseFloat(field) <= balance) { 
+        if ((balance - parseFloat(field) > 0) ^ parseFloat(field) != /[^0-9]/g) { 
+            setStatus("Error: Your withdrawal must be a number and your balance must not go below zero");
             setTimeout(() => setStatus(''),3000);
-            return true;
-        }
-            setStatus("Error: Your balance must not go below zero");            
             return false;
+    }            
+            return true;
     };
 
     function handleCreate(){

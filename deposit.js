@@ -7,12 +7,13 @@ function Deposit(){
   
     const isSubmitDisabled = !deposit;
 
+//  previously was: if (parseFloat(field) <= 0)
     function validate(field, label){
-       if (parseFloat(field) <= 0) {
-            setStatus("Error: Your " + label + " must be greater than zero");
+        if (parseFloat(field) > 0 ^ parseFloat(field) != /[^0-9]/g) {            
+            setStatus("Error: Your " + label + " must be a number and it must be greater than zero");
             setTimeout(() => setStatus(''),3000);
-            return false;
-       }
+            return false;            
+        } 
             return true;
     };
 
@@ -71,39 +72,3 @@ function Deposit(){
         />
     );
 }
-
-//  function buttonDisabled(){
-//        if ({handleSubmit} = false) {
- //           button.disabled = true;
- //       } else {
- //           button.disabled = false;
- //       }
- //   }
-
- 
-//    const disableButton = () => {
- //       setButtonDisabled(true);
- //   };
-  
-  //  const enableButton = () => {
-  //      setButtonDisabled(false); 
- //   };
-
-//   function handleSubmit(){
-//        console.log(deposit);
-//         if (!validate(deposit, 'deposit')) return;
-//        ctx.users.push({deposit}); 
-//        setShow(true);
-//    }; 
-
-
-//function m(x) {
- //   if (isNaN(x)) {
-//      return 'hi';
-//    }
-//    return x;
-//  }
-//console.log(m('tryrtF'));
-// Expected output: "Not a Number!"
-//console.log(m('45'));
-// Expected output: 3140
